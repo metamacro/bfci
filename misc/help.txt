@@ -1,0 +1,4 @@
+"NAME\n"
+"\tbfci - interpret brainfuck code\n"
+"SYNOPSIS\n"
+"\tA BrainFuck interpreter written in C.\n"

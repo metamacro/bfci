@@ -1,4 +1,5 @@
 #include <bfci/bfci.h>
+#include <bfci/data.h>
 #include <bfci/debug.h>
 #include <bfci/io.h>
 #include <bfci/memory.h>
@@ -78,11 +79,11 @@ read_program(program_t *program)
 
     fp = fopen(program->progpath, "r");
 
-    init_utarray_program_data(program);
+    init_utarray_program_instructions(program);
 
     while (EOF != (c = fgetc(fp)))
         if (is_valid_character(c))
-            utarray_push_back(program->data, &c);
+            utarray_push_back(program->instructions, &c);
 
     goto out;
 error:
@@ -98,6 +99,8 @@ print_program(program_t *program)
 {
     char *cp = XNULL;
 
-    UT_ARRAY_ITER(program->data, cp, char *)
-    putchar(*cp);
+    UT_ARRAY_ITER(program->instructions, cp, char *)
+    {
+        putchar(*cp);
+    }
 }

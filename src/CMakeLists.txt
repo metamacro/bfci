@@ -5,6 +5,7 @@ set_local_and_parent(
 
 set(HEADER_LIST 
     "${PROJECT_SOURCE_DIR}/include/bfci/bfci.h"
+    "${PROJECT_SOURCE_DIR}/include/bfci/data.h"
     "${PROJECT_SOURCE_DIR}/include/bfci/debug.h"
     "${PROJECT_SOURCE_DIR}/include/bfci/io.h"
     "${PROJECT_SOURCE_DIR}/include/bfci/memory.h"
@@ -12,6 +13,7 @@ set(HEADER_LIST
 
 set(SOURCE_LIST
     bfci.c
+    data.c
     memory.c
     io.c)
 

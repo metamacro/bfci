@@ -15,7 +15,7 @@
 #define CMD_SB_OPEN   '['
 #define CMD_SB_CLOSED ']'
 
-enum bfci_opcodes {
+typedef enum bfci_opcodes {
     OP_INC_DP      = 0x00,
     OP_DEC_DP      = 0x01,
     OP_INC_BYTE    = 0x02,
@@ -25,7 +25,7 @@ enum bfci_opcodes {
     OP_JMP_FORWARD = 0x06,
     OP_JMP_BACK    = 0x07,
     OP_LEN         = 0x08,
-};
+} bfci_opcodes_t;
 
 typedef enum bfci_status {
     SUCCESS = 0x00,

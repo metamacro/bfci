@@ -44,11 +44,11 @@ typedef struct program_s {
     UT_array *instructions;
 
     struct {
+        uint32_t  pc;
         UT_array *data;
     };
 
     struct {
-        uint32_t  pc;
         UT_array *intermediate;
     };
 } program_t;

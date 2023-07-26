@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-	<a href="/../../releases/latest" title="Latest release"><img src="https://img.shields.io/github/release/andreiosg/bfci?style=flat"></a>
+	<a href="/../../releases/latest" title="Latest Release"><img src="https://img.shields.io/github/release/andreiosg/bfci?style=flat"></a>
     <a href="/../../commits/" title="Last Commit"><img src="https://img.shields.io/github/last-commit/andreiosg/bfci?style=flat"></a>
     <a href="/../../issues" title="Open Issues"><img src="https://img.shields.io/github/issues/andreiosg/bfci?style=flat"></a>
     <a href="./LICENSE" title="License"><img src="https://img.shields.io/badge/License-GNU%20AGPL--3.0-blue.svg?style=flat"></a>
@@ -54,4 +54,9 @@ Invoke the build via `Make`:
 ```
 build $ make
 ```
+
+## License 
+Licensed under the *GNU Affero General Public License v3.0*.
+
+Refer to the [LICENSE](./LICENSE) file in the repository.
 

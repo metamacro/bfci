@@ -9,7 +9,7 @@ macro(git_submodule_update_init)
 
     if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
         set(GIT_SUBMODULE_UPDATE_INIT_CMD 
-            ${GIT_EXECUTABLE} submodule update --init --recursive)
+            ${GIT_EXECUTABLE} submodule update --init)
 
         execute_process(COMMAND ${GIT_SUBMODULE_UPDATE_INIT_CMD}
                         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}

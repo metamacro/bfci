@@ -57,6 +57,12 @@ void
 init_utarray_program_instructions(program_t *program);
 
 void
+free_utarray_program_instructions(program_t *program);
+
+void
 init_utarray_program_intermediate(program_t *program);
+
+void
+free_utarray_program_intermediate(program_t *program);
 
 #endif /* DATA_H */

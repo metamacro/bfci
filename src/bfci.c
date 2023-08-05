@@ -32,9 +32,9 @@ bfci_free_program(program_t *program)
 
     TRACE("%p", (void *)program->instructions);
     RUN_IF_NON_NULL(program->instructions,
-                    utarray_free(program->instructions));
+                    free_utarray_program_instructions(program));
 
     TRACE("%p", (void *)program->intermediate);
     RUN_IF_NON_NULL(program->intermediate,
-                    utarray_free(program->intermediate));
+                    free_utarray_program_intermediate(program));
 }

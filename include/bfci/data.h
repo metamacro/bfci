@@ -6,10 +6,12 @@
 #include <utarray.h>
 #include <uthash.h>
 
+/* helper macros */
 #define UT_ARRAY_ITER(ARRAY, ELEM, CAST) \
     while (XNULL                         \
            != ((ELEM) = (CAST)utarray_next(ARRAY, ELEM)))
 
+/* structs */
 static UT_icd
     char_icd
     = {
@@ -53,6 +55,7 @@ typedef struct program_s {
     };
 } program_t;
 
+/* array */
 void
 init_utarray_program_instructions(program_t *program);
 

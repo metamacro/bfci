@@ -5,6 +5,7 @@
 #include <bfci/memory.h>
 #include <bfci/utils.h>
 
+#include <ctype.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
@@ -53,7 +54,7 @@ file_exists(const char *fpath)
 }
 
 static inline bool
-is_valid_character(int c)
+is_valid_character(char c)
 {
     if (c == CMD_PLUS
         || c == CMD_MINUS
@@ -64,7 +65,8 @@ is_valid_character(int c)
         || c == CMD_SB_OPEN
         || c == CMD_SB_CLOSED) return true;
 
-    TRACE("invalid character: '%c'", c);
+    if (isprint(c)) TRACE("invalid character: '%c'", c);
+    else TRACE("invalid character: '0x%02hhX'", c);
     return false;
 }
 
@@ -82,7 +84,7 @@ read_program(program_t *program)
     init_utarray_program_instructions(program);
 
     while (EOF != (c = fgetc(fp)))
-        if (is_valid_character(c))
+        if (is_valid_character((char)c))
             utarray_push_back(program->instructions, &c);
 
     goto out;

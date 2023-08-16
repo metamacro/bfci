@@ -28,9 +28,9 @@ static UT_icd
 };
 
 static UT_icd
-    uint8_t_icd
+    int8_t_icd
     = {
-        sizeof(uint8_t),
+        sizeof(int8_t),
         XNULL,
         XNULL,
         XNULL,
@@ -57,11 +57,9 @@ typedef struct program_s {
     };
 
     struct {
-        uint32_t pc;
         struct {
             UT_array *data;
-            int       dp;
-            int       len;
+            size_t       len;
         };
     };
 } program_t;

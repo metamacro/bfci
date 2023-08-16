@@ -18,7 +18,7 @@ free_utarray_program_instructions(program_t *program)
 void
 init_utarray_program_intermediate(program_t *program)
 {
-    utarray_new(program->intermediate, &uint8_t_icd);
+    utarray_new(program->intermediate, &int8_t_icd);
 }
 
 void
@@ -30,7 +30,7 @@ free_utarray_program_intermediate(program_t *program)
 void
 init_utarray_program_data(program_t *program)
 {
-    utarray_new(program->data, &uint8_t_icd);
+    utarray_new(program->data, &int8_t_icd);
     program->len = PROGRAM_DATA_DEFAULT_LEN;
     utarray_resize(program->data, program->len);
 }

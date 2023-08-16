@@ -31,22 +31,15 @@ build_program_brackets_hashmap(program_t *program)
             break;
         case OP_JMP_BACK:
             /* non matching closed bracket */
-            //RC_GOTO_IF_NEQ(false,
-                           //STACK_EMPTY(head),
-                           //error);
+            RC_GOTO_IF_NEQ(false,
+                           STACK_EMPTY(head),
+                           error);
 
             add_matching_brackets(program, STACK_TOP(head)->pos, pc);
             pop_utstack_stack(&head);
             break;
         }
         pc++;
-    }
-    brackets_t *el  = XNULL;
-    brackets_t *tmp = XNULL;
-
-    HASH_ITER(hh, program->brackets, el, tmp)
-    {
-        printf("pair %d %d\n", el->pos, el->matching_pos);
     }
 
     /* non matching open bracket */

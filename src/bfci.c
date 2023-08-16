@@ -4,11 +4,11 @@
 #include <bfci/intermediate.h>
 #include <bfci/io.h>
 #include <bfci/utils.h>
+#include <stdio.h>
 
 bfci_status_t
 bfci_init_program(program_t *program, int argc, const char *argv[])
-{
-    int rc = SUCCESS;
+{ int rc = SUCCESS;
 
     RC_GOTO_IF_NEQ(SUCCESS,
                    argparse(argc, argv, program),
@@ -27,6 +27,86 @@ error:
     rc = FAILURE;
 out:
     return rc;
+}
+
+static int
+get_matching_bracket_pos(program_t *program, int pos)
+{
+    brackets_t *el = XNULL;
+
+    HASH_FIND_INT(program->brackets, &pos, el);
+
+    return el->matching_pos;
+}
+
+bfci_status_t
+bfci_run_program(program_t *program)
+{
+    int     rc  = SUCCESS;
+    size_t pc = 0;
+    size_t pc_max = 0;
+    size_t dp = 0;
+    int8_t *de = XNULL;
+    uint8_t *cmd = 0;
+
+    pc_max = utarray_len(program->intermediate);
+    init_utarray_program_data(program);
+
+    while(pc < pc_max)
+    {
+        if (dp > program->len) extend_utarray_program_data(program);
+
+        cmd = utarray_eltptr(program->intermediate, pc);
+        de = utarray_eltptr(program->data, dp);
+
+        switch (*cmd) {
+        case OP_INC_DP:
+            dp++;
+            break;
+        case OP_DEC_DP:
+            dp--;
+            break;
+        case OP_INC_BYTE:
+            (*de)++;
+            break;
+        case OP_DEC_BYTE:
+            (*de)--;
+            break;
+        case OP_OUT_BYTE:
+            putchar(*de);
+            break;
+        case OP_IN_BYTE:
+            *de = getchar();
+            break;
+        case OP_JMP_FORWARD:
+            if (0 == *de) {
+                pc = get_matching_bracket_pos(program, pc);
+            }
+            break;
+        case OP_JMP_BACK:
+            if (0 != *de) {
+                pc = get_matching_bracket_pos(program, pc);
+            }
+            break;
+        default:
+            TRACE("%c", *cmd);
+            goto error;
+        }
+
+        pc++;
+    }
+
+    TRACE("%zu", pc);
+    TRACE("%zu", pc_max);
+
+
+    goto out;
+error:
+    rc = FAILURE;
+out:
+    TRACE("%d", rc);
+    return rc;
+
 }
 
 void

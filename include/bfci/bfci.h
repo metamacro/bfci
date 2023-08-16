@@ -35,6 +35,9 @@ typedef enum bfci_status {
 bfci_status_t
 bfci_init_program(program_t *program, int argc, const char *argv[]);
 
+bfci_status_t
+bfci_run_program(program_t *program);
+
 void
 bfci_free_program(program_t *program);
 

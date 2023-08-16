@@ -16,7 +16,9 @@ main(int argc, const char *argv[])
                    bfci_init_program(&program, argc, argv),
                    error);
 
-    /* TODO: compile intermediate code, run */
+    RC_GOTO_IF_NEQ(SUCCESS,
+                   bfci_run_program(&program),
+                   error);
 
     goto out;
 error:

@@ -7,6 +7,7 @@ set(HEADER_LIST
     "${PROJECT_SOURCE_DIR}/include/bfci/bfci.h"
     "${PROJECT_SOURCE_DIR}/include/bfci/data.h"
     "${PROJECT_SOURCE_DIR}/include/bfci/debug.h"
+    "${PROJECT_SOURCE_DIR}/include/bfci/intermediate.h"
     "${PROJECT_SOURCE_DIR}/include/bfci/io.h"
     "${PROJECT_SOURCE_DIR}/include/bfci/memory.h"
     "${PROJECT_SOURCE_DIR}/include/bfci/utils.h")
@@ -14,8 +15,9 @@ set(HEADER_LIST
 set(SOURCE_LIST
     bfci.c
     data.c
-    memory.c
-    io.c)
+    intermediate.c
+    io.c
+    memory.c)
 
 add_library(
     ${BFCI_LIB_TARGET}

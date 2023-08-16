@@ -73,9 +73,10 @@ is_valid_character(char c)
 bfci_status_t
 read_program(program_t *program)
 {
-    int   rc = SUCCESS;
-    int   c  = 0;
-    FILE *fp = XNULL;
+    int   rc     = SUCCESS;
+    int   c_int  = 0;
+    char  c_char = 0;
+    FILE *fp     = XNULL;
 
     RC_GOTO_IF_NEQ(true, file_exists(program->progpath), error);
 
@@ -83,9 +84,11 @@ read_program(program_t *program)
 
     init_utarray_program_instructions(program);
 
-    while (EOF != (c = fgetc(fp)))
-        if (is_valid_character((char)c))
-            utarray_push_back(program->instructions, &c);
+    while (EOF != (c_int = fgetc(fp))) {
+        c_char = (char)c_int;
+        if (is_valid_character(c_char))
+            utarray_push_back(program->instructions, &c_char);
+    }
 
     goto out;
 error:

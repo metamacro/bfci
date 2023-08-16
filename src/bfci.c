@@ -1,6 +1,7 @@
 #include <bfci/bfci.h>
 #include <bfci/data.h>
 #include <bfci/debug.h>
+#include <bfci/intermediate.h>
 #include <bfci/io.h>
 #include <bfci/utils.h>
 
@@ -15,6 +16,10 @@ bfci_init_program(program_t *program, int argc, const char *argv[])
 
     RC_GOTO_IF_NEQ(SUCCESS,
                    read_program(program),
+                   error);
+
+    RC_GOTO_IF_NEQ(SUCCESS,
+                   compile_intermediate(program),
                    error);
 
     goto out;
@@ -37,4 +42,12 @@ bfci_free_program(program_t *program)
     TRACE("%p", (void *)program->intermediate);
     RUN_IF_NON_NULL(program->intermediate,
                     free_utarray_program_intermediate(program));
+
+    TRACE("%p", (void *)program->brackets);
+    RUN_IF_NON_NULL(program->brackets,
+                    free_uthash_program_brackets(program));
+
+    TRACE("%p", (void *)program->data);
+    RUN_IF_NON_NULL(program->data,
+                    free_utarray_program_data(program));
 }

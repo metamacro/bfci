@@ -1,5 +1,5 @@
 <h1 align="center">
-    Brainfuck C Interpreter (WIP)
+    Brainfuck C Interpreter
 </h1>
 
 <p align="center">
@@ -16,7 +16,7 @@ A Brainfuck interpreter written in the C programming language.
 Invoke the interpreter binary with one positional argument, i.e., the BrainFuck program path:
 
 ```
-$ ./bfci_X.Y.Z /path/to/brainfuck/program.bf
+$ ./bfci /path/to/brainfuck/program.bf
 ```
 
 ## Development

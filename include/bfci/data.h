@@ -59,7 +59,7 @@ typedef struct program_s {
     struct {
         struct {
             UT_array *data;
-            size_t       len;
+            size_t    len;
         };
     };
 } program_t;

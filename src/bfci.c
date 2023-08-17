@@ -8,7 +8,8 @@
 
 bfci_status_t
 bfci_init_program(program_t *program, int argc, const char *argv[])
-{ int rc = SUCCESS;
+{
+    int rc = SUCCESS;
 
     RC_GOTO_IF_NEQ(SUCCESS,
                    argparse(argc, argv, program),
@@ -26,6 +27,7 @@ bfci_init_program(program_t *program, int argc, const char *argv[])
 error:
     rc = FAILURE;
 out:
+    TRACE("%d", rc);
     return rc;
 }
 
@@ -42,22 +44,21 @@ get_matching_bracket_pos(program_t *program, int pos)
 bfci_status_t
 bfci_run_program(program_t *program)
 {
-    int     rc  = SUCCESS;
-    size_t pc = 0;
-    size_t pc_max = 0;
-    size_t dp = 0;
-    int8_t *de = XNULL;
-    uint8_t *cmd = 0;
+    int      rc     = SUCCESS;
+    size_t   pc     = 0;
+    size_t   pc_max = 0;
+    size_t   dp     = 0;
+    int8_t  *de     = XNULL;
+    uint8_t *cmd    = 0;
 
     pc_max = utarray_len(program->intermediate);
     init_utarray_program_data(program);
 
-    while(pc < pc_max)
-    {
+    while (pc < pc_max) {
         if (dp > program->len) extend_utarray_program_data(program);
 
         cmd = utarray_eltptr(program->intermediate, pc);
-        de = utarray_eltptr(program->data, dp);
+        de  = utarray_eltptr(program->data, dp);
 
         switch (*cmd) {
         case OP_INC_DP:
@@ -96,17 +97,12 @@ bfci_run_program(program_t *program)
         pc++;
     }
 
-    TRACE("%zu", pc);
-    TRACE("%zu", pc_max);
-
-
     goto out;
 error:
     rc = FAILURE;
 out:
     TRACE("%d", rc);
     return rc;
-
 }
 
 void

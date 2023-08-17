@@ -21,7 +21,7 @@
         if (TRACE_ON)                                                             \
             fprintf(stderr,                                                       \
                     "%s:%s:" ESTRINGIFY(__LINE__) ":(" STRINGIFY(X) "): " F "\n", \
-                    __FILE__,                                                \
+                    __FILE__,                                                     \
                     __func__,                                                     \
                     (X));                                                         \
     } while (false)

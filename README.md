@@ -56,6 +56,10 @@ Invoke the build via `Make`:
 build $ make
 ```
 
+## Examples
+
+The `examples` directory contains `BrainFuck` example programs.
+
 ## License 
 Licensed under the *GNU Affero General Public License v3.0*.
 

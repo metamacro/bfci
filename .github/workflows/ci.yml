@@ -1,11 +1,9 @@
 name: BFCI CI
 on:
   push:
-    branches:
-	  - "**"
+    branches: "**"
   pull_request:
-    branches:
-	  - "**"
+    branches: "**"
 
 jobs:
   git-branch:

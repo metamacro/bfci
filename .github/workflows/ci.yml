@@ -1,0 +1,84 @@
+name: BFCI CI
+on:
+  push:
+    branches:
+	  - "**"
+  pull_request:
+    branches:
+	  - "**"
+
+jobs:
+  git-branch:
+    name: Get git branch
+    runs-on: ubuntu-latest
+    outputs:
+      branch-name: ${{ steps.get-git-branch.outputs.branch-name }}
+    steps:
+      - id: get-git-branch
+        run: |
+          if ${{ github.event_name == 'push' }}
+            then export GIT_BRANCH=`echo ${{ github.ref }} | cut -d'/' -f 3`
+          else
+            export GIT_BRANCH=${{ github.base_ref }}
+          fi
+          echo "branch-name=$GIT_BRANCH" >> $GITHUB_OUTPUT
+
+  build:
+    name: ${{ matrix.config.name }}
+    runs-on: ${{ matrix.config.os }} # mac-OS does not implement robust mutexes so it is not supported
+    needs: git-branch
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - {
+            name: "Release, gcc",
+            os: "ubuntu-22.04",
+            build-type: "Release",
+            cc: "gcc",
+            options: "",
+            make-target: ""
+          }
+          - {
+            name: "Release, clang",
+            os: "ubuntu-22.04",
+            build-type: "Release",
+            cc: "clang",
+            options: "",
+            make-target: ""
+          }
+          - {
+            name: "Debug, gcc",
+            os: "ubuntu-22.04",
+            build-type: "Debug",
+            cc: "gcc",
+            options: "-D ENABLE_DEBUG=ON",
+            make-target: ""
+          }
+          - {
+            name: "Debug, clang",
+            os: "ubuntu-22.04",
+            build-type: "Debug",
+            cc: "clang",
+            options: "-D ENABLE_DEBUG=ON",
+            make-target: ""
+          }
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Configure
+        shell: bash
+        working-directory: ${{ github.workspace }}
+        run: |
+          mkdir build
+          cd build
+          CC=${{ matrix.config.cc }} cmake -DCMAKE_BUILD_TYPE=${{ matrix.config.build-type }} ${{ matrix.config.options }} ..
+
+      - name: Build
+        shell: bash
+        working-directory: ${{ github.workspace }}/build
+        run: |
+          export LC_ALL=C.UTF-8
+          make ${{ matrix.config.make-target }}
+

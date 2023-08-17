@@ -4,7 +4,7 @@ set(PROJECT_NAME "BrainFuckCInterpreter")
 
 project(
     ${PROJECT_NAME}
-    VERSION 0.1.0
+    VERSION 0.4.1
     DESCRIPTION "BrainFuck interpreter written  \
                  in the C programming language"
     LANGUAGES C)

@@ -4,9 +4,9 @@
 
 <p align="center">
 	<a href="/../../releases/latest" title="Latest Release"><img src="https://img.shields.io/github/v/release/andreiosg/bfci.svg?sort=semver"></a>
+    <a href="https://github.com/andreiosg/bfci/actions/workflows/ci.yml" title="BFCI CI"><img src="https://github.com/andreiosg/bfci/workflows/BFCI%20CI/badge.svg"></a>
     <a href="/../../commits/" title="Last Commit"><img src="https://img.shields.io/github/last-commit/andreiosg/bfci?style=flat"></a>
     <a href="/../../issues" title="Open Issues"><img src="https://img.shields.io/github/issues/andreiosg/bfci?style=flat"></a>
-    <a href="https://github.com/andreiosg/bfci/actions/workflows/ci.yml" title="BFCI CI"><img src="https://github.com/andreiosg/bfci/workflows/BFCI%20CI/badge.svg"></a>
     <a href="./LICENSE" title="License"><img src="https://img.shields.io/badge/License-GNU%20AGPL--3.0-blue.svg?style=flat"></a>
 </p>
 

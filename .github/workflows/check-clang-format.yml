@@ -8,7 +8,7 @@ jobs:
       matrix:
         path:
           - 'src'
-          - 'include'
+          - 'include/bfci'
 		  - 'app'
     steps:
     - uses: actions/checkout@v3

@@ -42,7 +42,14 @@ jobs:
             options: "-D ENABLE_DEBUG=ON",
           }
           - {
-            name: "Asan, Ubsan",
+            name: "Asan, Ubsan, Lsan",
+            os: "ubuntu-latest",
+            build-type: "Debug",
+            cc: "clang",
+            options: "-D CMAKE_C_FLAGS=-fsanitize=address,undefined,leak -D ENABLE_DEBUG=ON",
+          }
+          - {
+            name: "Valgrind",
             os: "ubuntu-latest",
             build-type: "Debug",
             cc: "clang",

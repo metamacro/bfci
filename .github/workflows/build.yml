@@ -48,13 +48,6 @@ jobs:
             cc: "clang",
             options: "-D CMAKE_C_FLAGS=-fsanitize=address,undefined,leak -D ENABLE_DEBUG=ON",
           }
-          - {
-            name: "Valgrind",
-            os: "ubuntu-latest",
-            build-type: "Debug",
-            cc: "clang",
-            options: "-D CMAKE_C_FLAGS=-fsanitize=address,undefined -D ENABLE_DEBUG=ON",
-          }
 
     steps:
       - uses: actions/checkout@v3

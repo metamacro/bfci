@@ -15,7 +15,7 @@ A Brainfuck interpreter written in the C programming language.
 
 ## Usage
 
-Invoke the interpreter binary with one positional argument, i.e., the BrainFuck program path:
+Invoke the interpreter binary with one positional argument, i.e. the BrainFuck program path, e.g.:
 
 ```
 $ ./bfci /path/to/brainfuck/program.bf
@@ -29,13 +29,13 @@ After cloning the repository, make sure to:
 ```
 $ git submodule update --init
 ```
-Or simply build the project once, since the process is automated via`CMake`.
+Or simply build the project once, since the process is automated via `CMake`.
 
 ## Build
 
 Clone the repository via the preferred method.
 
-Generate the build recipes via `CMake`:
+Generate the build recipes via `CMake`, e.g.:
 
 ```
 $ mkdir build
@@ -55,6 +55,20 @@ Invoke the build via `Make`:
 
 ```
 build $ make
+```
+
+## Build
+
+Enable the tests by setting the `ENABLE_TESTS` `CMake` option to `ON`, e.g.:
+
+```
+build $ cmake -D ENABLE_TESTS=ON ..
+```
+
+Execute the tests, e.g.:
+
+```
+build $ ctest
 ```
 
 ## Examples

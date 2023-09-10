@@ -1,4 +1,4 @@
-set(BFCI_APP_TARGET "bfci")
+set_local_and_parent(BFCI_APP_TARGET "bfci")
 
 add_executable(
     ${BFCI_APP_TARGET}

@@ -24,3 +24,7 @@ git_submodule_update_init()
 
 add_subdirectory(src)
 add_subdirectory(app)
+
+if(ENABLE_TESTS)
+    include(tests/Tests.cmake)
+endif()

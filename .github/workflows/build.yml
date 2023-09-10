@@ -8,8 +8,7 @@ on:
 jobs:
   build:
     name: ${{ matrix.config.name }}
-    runs-on: ${{ matrix.config.os }} # mac-OS does not implement robust mutexes so it is not supported
-    needs: git-branch
+    runs-on: ${{ matrix.config.os }}
     strategy:
       fail-fast: false
       matrix:

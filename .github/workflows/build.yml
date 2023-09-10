@@ -1,4 +1,4 @@
-name: BFCI CI
+name: Build
 on:
   push:
     branches: "**"
@@ -23,7 +23,7 @@ jobs:
 
   build:
     name: ${{ matrix.config.name }}
-    runs-on: ${{ matrix.config.os }}
+    runs-on: ${{ matrix.config.os }} # mac-OS does not implement robust mutexes so it is not supported
     needs: git-branch
     strategy:
       fail-fast: false
@@ -31,7 +31,7 @@ jobs:
         config:
           - {
             name: "Release, gcc",
-            os: "ubuntu-latest",
+            os: "ubuntu-22.04",
             build-type: "Release",
             cc: "gcc",
             options: "",
@@ -39,7 +39,7 @@ jobs:
           }
           - {
             name: "Release, clang",
-            os: "ubuntu-latest",
+            os: "ubuntu-22.04",
             build-type: "Release",
             cc: "clang",
             options: "",
@@ -47,7 +47,7 @@ jobs:
           }
           - {
             name: "Debug, gcc",
-            os: "ubuntu-latest",
+            os: "ubuntu-22.04",
             build-type: "Debug",
             cc: "gcc",
             options: "-D ENABLE_DEBUG=ON",
@@ -55,7 +55,7 @@ jobs:
           }
           - {
             name: "Debug, clang",
-            os: "ubuntu-latest",
+            os: "ubuntu-22.04",
             build-type: "Debug",
             cc: "clang",
             options: "-D ENABLE_DEBUG=ON",

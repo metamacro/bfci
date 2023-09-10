@@ -11,3 +11,6 @@
 - add new Tests (`tests.yml`) workflow
     - runs on `build.yml` completion
     - on success, runs `ctest` for each build artifact
+
+## Analysis
+- incorporate valgrind

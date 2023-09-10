@@ -10,6 +10,6 @@ add_test(
 
 set_tests_properties(
     ${TEST_HELP}
-PROPERTIES
+    PROPERTIES
     WILL_FAIL TRUE
 )

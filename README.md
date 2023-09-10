@@ -57,7 +57,7 @@ Invoke the build via `Make`:
 build $ make
 ```
 
-## Build
+## Tests
 
 Enable the tests by setting the `ENABLE_TESTS` `CMake` option to `ON`, e.g.:
 
